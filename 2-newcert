@@ -7,7 +7,6 @@ export NEWNAME=datascience.mizuhobank.com.sg
 
 # following will need sudo or done as root
 cp ./out/$NEWNAME/secret.yml /opt/anaconda/swapname/$NEWNAME/.
-sed -i -e 's/certs/anaconda-enterprise-certs/g' /opt/anaconda/swapname/$NEWNAME/secret.yml 
 
 # verify the name of the secret is updated and looks as follows:
 grep name /opt/anaconda/swapname/$NEWNAME/secret.yml
