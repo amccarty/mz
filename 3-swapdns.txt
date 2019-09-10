@@ -1,0 +1,29 @@
+export ORIGNAME=dasvpmmn01.mizuhobank.com.sg
+export NEWNAME=datascience.mizuhobank.com.sg
+cp /opt/anaconda/swapname/$ORIGNAME/configmap.yaml /opt/anaconda/swapname/$NEWNAME/.
+cp /opt/anaconda/swapname/$ORIGNAME/ingress.yaml /opt/anaconda/swapname/$NEWNAME/.
+cd /opt/anaconda/swapname/$NEWNAME
+
+# configmap: verify sed command replaced references to $ORIGNAME with $NEWNAME
+# if everything looks good, let's run the sed comamnd to inplace replace
+sed -e "s/$ORIGNAME/$NEWNAME/g" configmap.yaml |grep $ORIGNAME
+sed -e "s/$ORIGNAME/$NEWNAME/g" configmap.yaml |grep $NEWNAME |less
+sed -i -e "s/$ORIGNAME/$NEWNAME/g" configmap.yaml
+
+# replace configmap in k8s
+kubectl replace -f ./configmap.yaml
+
+# this will replace all config maps
+# configmap/anaconda-enterprise-anaconda-platform.yml replaced
+# configmap/anaconda-enterprise-install replaced
+# configmap/anaconda-enterprise-nginx-config replaced
+# configmap/docs-nginx-config replaced
+
+# ingress: verify sed command replaced references to $ORIGNAME with $NEWNAME
+# if everything looks good, let's run the sed comamnd to inplace replace
+sed -e "s/$ORIGNAME/$NEWNAME/g" ingress.yaml |grep $ORIGNAME
+sed -e "s/$ORIGNAME/$NEWNAME/g" ingress.yaml |grep $NEWNAME
+sed -i -e "s/$ORIGNAME/$NEWNAME/g" ingress.yaml
+
+# replace configmap in k8s
+kubectl replace -f ./ingress.yaml
