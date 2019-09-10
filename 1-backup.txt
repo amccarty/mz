@@ -1,0 +1,23 @@
+(inside of gravity)
+export ORIGNAME=dasvpmmn01.mizuhobank.com.sg
+export NEWNAME=datascience.mizuhobank.com.sg
+mkdir -p /opt/anaconda/swapname/$ORIGNAME
+mkdir -p /opt/anaconda/swapname/$NEWNAME
+
+# create backups of current DNS
+# get all configmaps in default namespace, secrets + ingress configs
+cd /opt/anaconda/swapname/$ORIGNAME
+kubectl get cm -o yaml --export > configmap.yaml
+kubectl get secret anaconda-enterprise-certs -o yaml --export > certs.yaml
+kubectl get ingress -o yaml --export > ingress.yaml
+
+# stop postgres DB; then create backup of /opt/anaconda/storage/pgdata
+kubectl scale deploy --replicas=0 anaconda-enterprise-postgres
+
+# verify postgres is stopped before backingup: 
+# kubectl get deploy anaconda-enterprise-postgres
+tar czfP pgdata.tgz /opt/anaconda/storage/pgdata
+
+# now restart postgres and all other pods
+kubectl scale deploy --replicas=1 anaconda-enterprise-postgres
+kubectl delete po --all -n default
