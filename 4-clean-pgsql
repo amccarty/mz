@@ -1,0 +1,17 @@
+
+# Connect to postgres:
+kubectl exec -it anaconda-enterprise-postgres-podname /bin/bash
+
+# use psql to connect to DB and update project entries 
+:/# psql -U postgres
+psql (9.6.11)
+Type "help" for help.
+
+postgres=# \c anaconda_storage
+You are now connected to database "anaconda_storage" as user "postgres".
+
+# Update repo_url column with new DNS name for all rows
+anaconda_storage=# UPDATE projects SET repo_url = REPLACE(repo_url,'dasvpmmn01.mizuhobank.com.sg','datascience.mizuhobank.com.sg');
+UPDATE 4
+
+# ^D to exit
