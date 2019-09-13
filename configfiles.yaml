@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  5a0642b18bae97d76fb5b935507ee4bb: dHJ1ZQ==
+  af90dcbc5d4209b4798bf2fcc9056baf: ZXhhbXBsZSBkYXRh
+  anaconda_manifest: eyJhZjkwZGNiYzVkNDIwOWI0Nzk4YmYyZmNjOTA1NmJhZiI6ICIvb3B0L2FuYWNvbmRhL215ZmlsZSIsICI1YTA2NDJiMThiYWU5N2Q3NmZiNWI5MzU1MDdlZTRiYiI6ICIvZXRjL2FuYWNvbmRhX2NvbmZfc3VjY2VlZGVkIn0=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: anaconda-config-files
+  selfLink: /api/v1/namespaces/default/secrets/anaconda-config-files
+type: Opaque
