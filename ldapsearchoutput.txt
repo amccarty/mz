@@ -1,0 +1,54 @@
+(base) [centos@ip-172-31-56-206 ~]$ ldapsearch -H ldap://aaron-2016.svc.anaconda.com -x -W -D "CN=alan,CN=Users,DC=SVC,DC=ANACONDA,DC=COM" -b "OU=Barnyard,DC=SVC,DC=ANACONDA,DC=COM" "(sAMAccountName=pig1)"
+Enter LDAP Password: 
+# extended LDIF
+#
+# LDAPv3
+# base <OU=Barnyard,DC=SVC,DC=ANACONDA,DC=COM> with scope subtree
+# filter: (sAMAccountName=pig1)
+# requesting: ALL
+#
+
+# pig1, Barnyard, SVC.ANACONDA.COM
+dn: CN=pig1,OU=Barnyard,DC=SVC,DC=ANACONDA,DC=COM
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+cn: pig1
+givenName: pig1
+distinguishedName: CN=pig1,OU=Barnyard,DC=SVC,DC=ANACONDA,DC=COM
+instanceType: 4
+whenCreated: 20190827143859.0Z
+whenChanged: 20190827144516.0Z
+displayName: pig1
+uSNCreated: 54830
+memberOf: CN=Pigs,OU=Barnyard,DC=SVC,DC=ANACONDA,DC=COM
+uSNChanged: 54932
+name: pig1
+objectGUID:: XM59WAa3yE23q3Vru7tE5w==
+userAccountControl: 66048
+badPwdCount: 0
+codePage: 0
+countryCode: 0
+badPasswordTime: 0
+lastLogoff: 0
+lastLogon: 0
+pwdLastSet: 132113907162056152
+primaryGroupID: 513
+objectSid:: AQUAAAAAAAUVAAAAFrG+Rlsi9cAMi5AMYgQAAA==
+accountExpires: 9223372036854775807
+logonCount: 0
+sAMAccountName: pig1
+sAMAccountType: 805306368
+userPrincipalName: pig1@SVC.ANACONDA.COM
+objectCategory: CN=Person,CN=Schema,CN=Configuration,DC=SVC,DC=ANACONDA,DC=COM
+dSCorePropagationData: 20190827143859.0Z
+dSCorePropagationData: 16010101000000.0Z
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+
